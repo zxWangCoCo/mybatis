@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<!-- 1.properties：用来引入外部的属性文件
+			属性：
+				-resource：引入类路径下的属性文件
+				-url：引入网络上或者磁盘上的属性文件	
+	 -->
+	<properties resource="db.properties">
+		<property name="jdbc.password" value="123456"/>
+	</properties>
+	
+	<!-- 2.settings：用来配置MyBatis中的一些设置 -->
+	<settings>
+		<!-- 
+			name：指定要配置的属性的名字
+			value：指定设置的属性值
+		 -->
+		 <!-- 开启驼峰命名法，可以将数据库中的下划线映射为驼峰命名 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	
+	<!-- 6.environments：用来配置环境们 -->
+	<!-- 通过default属性指定使用哪一个环境 -->
+	<environments default="development">
+		<!-- 通过 environment标签配置一个一个的环境，如：开发环境、测试环境、生产环境，通过id属性制定一个唯一的标识符-->
+		<environment id="development">
+			<!-- 通过transactionManager标签配置事务管理器 ，最终要交给Spring来配置
+				type属性的可选值：
+						JDBC:使用JDBC的策略
+						MANAGED：通过容器来管理事务的整个生命周期
+						自定义：只需要实现TransactionFactory接口
+						
+			-->
+			<transactionManager type="JDBC" />
+			<!-- 通过dataSource标签配置数据源
+				type属性的可选值：
+						UNPOOLED：不使用连接池
+						POOLED：使用连接池
+						JNDI：让容器去寻找数据源
+						自定义：只需要实现DataSourceFactory接口
+			 -->
+			<dataSource type="POOLED">
+			<!-- 
+				property标签中读取value属性值得顺序：
+					1.首先读取properties子标签property标签中的value属性值
+					2.如果外部属性文件中的key与1中的property中的key一致将覆盖property标签中的value值
+					3.如果通过1和2都获取不到属性值，那么就以当前property标签中的value值作为最终连接数据库的值
+			 -->
+				<property name="driver" value="${jdbc.driverClass}" />
+				<property name="url" value="${jdbc.jdbcUrl}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+		
+	</environments>
+	
+	
+	<!-- 8.mappers：注册Mapper接口的映射文件 -->
+	<mappers>
+		<!-- 
+		子标签mapper：设置一个一个的映射文件
+			属性：
+				resource：注册类路径下的映射文件
+				url：注册网络上或者磁盘上的映射文件
+				class：通过指定接口的全类名注册映射文件
+					-此时映射文件必须 与接口名保持一致并且要在同一个包下
+					-如果不想将映射文件放到同一个包下，可以通过在接口的方法上添加注解的方式写sql语句，如：@Select("select * from employees where id = #{id}")
+		子标签package：通过指定包名注册映射文件
+					-此时映射文件必须 与接口名保持一致并且要在同一个包下			
+		 -->
+		<mapper resource="com/atguigu/mbg/mapper/EmployeeMapper.xml"/>
+		<mapper resource="com/atguigu/mbg/mapper/DepartmentMapper.xml"/>
+	</mappers>
+</configuration>

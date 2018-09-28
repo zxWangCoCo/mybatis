@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.mbg.mapper.FacilitatorMapper" >
+  <resultMap id="BaseResultMap" type="com.atguigu.mbg.entities.Facilitator" >
+    <id column="fac_id" property="facId" jdbcType="VARCHAR" />
+    <result column="fac_contacts_name" property="facContactsName" jdbcType="VARCHAR" />
+    <result column="fac_contacts_phone" property="facContactsPhone" jdbcType="CHAR" />
+    <result column="fac_verify_code" property="facVerifyCode" jdbcType="VARCHAR" />
+    <result column="fac_joint" property="facJoint" jdbcType="TINYINT" />
+    <result column="fac_joint_phone" property="facJointPhone" jdbcType="CHAR" />
+    <result column="fac_recommend_code" property="facRecommendCode" jdbcType="VARCHAR" />
+    <result column="fac_myself_code" property="facMyselfCode" jdbcType="VARCHAR" />
+    <result column="fac_type" property="facType" jdbcType="TINYINT" />
+    <result column="fac_license_type" property="facLicenseType" jdbcType="TINYINT" />
+    <result column="fac_license_picture_url" property="facLicensePictureUrl" jdbcType="VARCHAR" />
+    <result column="fac_country_name" property="facCountryName" jdbcType="VARCHAR" />
+    <result column="fac_license_code" property="facLicenseCode" jdbcType="VARCHAR" />
+    <result column="fac_license_province" property="facLicenseProvince" jdbcType="VARCHAR" />
+    <result column="fac_license_city" property="facLicenseCity" jdbcType="VARCHAR" />
+    <result column="fac_license_district" property="facLicenseDistrict" jdbcType="VARCHAR" />
+    <result column="fac_license_address" property="facLicenseAddress" jdbcType="VARCHAR" />
+    <result column="fac_create_time" property="facCreateTime" jdbcType="TIMESTAMP" />
+    <result column="fac_start_time" property="facStartTime" jdbcType="TIMESTAMP" />
+    <result column="fac_end_time" property="facEndTime" jdbcType="TIMESTAMP" />
+    <result column="fac_registered_assets" property="facRegisteredAssets" jdbcType="DOUBLE" />
+    <result column="fac_business_scope" property="facBusinessScope" jdbcType="VARCHAR" />
+    <result column="fac_certificate_type" property="facCertificateType" jdbcType="TINYINT" />
+    <result column="fac_certificate_picture_url" property="facCertificatePictureUrl" jdbcType="VARCHAR" />
+    <result column="fac_legal_name" property="facLegalName" jdbcType="VARCHAR" />
+    <result column="fac_certificate_code" property="facCertificateCode" jdbcType="VARCHAR" />
+    <result column="fac_certificate_start_time" property="facCertificateStartTime" jdbcType="TIMESTAMP" />
+    <result column="fac_certificate_end_time" property="facCertificateEndTime" jdbcType="TIMESTAMP" />
+    <result column="fac_company_province" property="facCompanyProvince" jdbcType="VARCHAR" />
+    <result column="fac_company_city" property="facCompanyCity" jdbcType="VARCHAR" />
+    <result column="fac_company_district" property="facCompanyDistrict" jdbcType="VARCHAR" />
+    <result column="fac_company_address" property="facCompanyAddress" jdbcType="VARCHAR" />
+    <result column="fac_company_phone" property="facCompanyPhone" jdbcType="VARCHAR" />
+    <result column="fac_emergency_name" property="facEmergencyName" jdbcType="VARCHAR" />
+    <result column="fac_emergency_phone" property="facEmergencyPhone" jdbcType="CHAR" />
+    <result column="fac_organization_code" property="facOrganizationCode" jdbcType="VARCHAR" />
+    <result column="fac_organization_start_time" property="facOrganizationStartTime" jdbcType="TIMESTAMP" />
+    <result column="fac_organization_end_time" property="facOrganizationEndTime" jdbcType="TIMESTAMP" />
+    <result column="fac_bank_name" property="facBankName" jdbcType="VARCHAR" />
+    <result column="fac_account_url" property="facAccountUrl" jdbcType="VARCHAR" />
+    <result column="fac_account_number" property="facAccountNumber" jdbcType="VARCHAR" />
+    <result column="fac_strategy" property="facStrategy" jdbcType="TINYINT" />
+    <result column="parent_fac_id" property="parentFacId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="fac_reserved1" property="facReserved1" jdbcType="VARCHAR" />
+    <result column="fac_reserved2" property="facReserved2" jdbcType="VARCHAR" />
+    <result column="fac_reserved3" property="facReserved3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fac_id, fac_contacts_name, fac_contacts_phone, fac_verify_code, fac_joint, fac_joint_phone, 
+    fac_recommend_code, fac_myself_code, fac_type, fac_license_type, fac_license_picture_url, 
+    fac_country_name, fac_license_code, fac_license_province, fac_license_city, fac_license_district, 
+    fac_license_address, fac_create_time, fac_start_time, fac_end_time, fac_registered_assets, 
+    fac_business_scope, fac_certificate_type, fac_certificate_picture_url, fac_legal_name, 
+    fac_certificate_code, fac_certificate_start_time, fac_certificate_end_time, fac_company_province, 
+    fac_company_city, fac_company_district, fac_company_address, fac_company_phone, fac_emergency_name, 
+    fac_emergency_phone, fac_organization_code, fac_organization_start_time, fac_organization_end_time, 
+    fac_bank_name, fac_account_url, fac_account_number, fac_strategy, parent_fac_id, 
+    create_time, fac_reserved1, fac_reserved2, fac_reserved3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.atguigu.mbg.entities.FacilitatorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from facilitator
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from facilitator
+    where fac_id = #{facId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from facilitator
+    where fac_id = #{facId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atguigu.mbg.entities.FacilitatorExample" >
+    delete from facilitator
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atguigu.mbg.entities.Facilitator" >
+    insert into facilitator (fac_id, fac_contacts_name, fac_contacts_phone, 
+      fac_verify_code, fac_joint, fac_joint_phone, 
+      fac_recommend_code, fac_myself_code, fac_type, 
+      fac_license_type, fac_license_picture_url, fac_country_name, 
+      fac_license_code, fac_license_province, fac_license_city, 
+      fac_license_district, fac_license_address, 
+      fac_create_time, fac_start_time, fac_end_time, 
+      fac_registered_assets, fac_business_scope, fac_certificate_type, 
+      fac_certificate_picture_url, fac_legal_name, 
+      fac_certificate_code, fac_certificate_start_time, 
+      fac_certificate_end_time, fac_company_province, 
+      fac_company_city, fac_company_district, fac_company_address, 
+      fac_company_phone, fac_emergency_name, fac_emergency_phone, 
+      fac_organization_code, fac_organization_start_time, 
+      fac_organization_end_time, fac_bank_name, 
+      fac_account_url, fac_account_number, fac_strategy, 
+      parent_fac_id, create_time, fac_reserved1, 
+      fac_reserved2, fac_reserved3)
+    values (#{facId,jdbcType=VARCHAR}, #{facContactsName,jdbcType=VARCHAR}, #{facContactsPhone,jdbcType=CHAR}, 
+      #{facVerifyCode,jdbcType=VARCHAR}, #{facJoint,jdbcType=TINYINT}, #{facJointPhone,jdbcType=CHAR}, 
+      #{facRecommendCode,jdbcType=VARCHAR}, #{facMyselfCode,jdbcType=VARCHAR}, #{facType,jdbcType=TINYINT}, 
+      #{facLicenseType,jdbcType=TINYINT}, #{facLicensePictureUrl,jdbcType=VARCHAR}, #{facCountryName,jdbcType=VARCHAR}, 
+      #{facLicenseCode,jdbcType=VARCHAR}, #{facLicenseProvince,jdbcType=VARCHAR}, #{facLicenseCity,jdbcType=VARCHAR}, 
+      #{facLicenseDistrict,jdbcType=VARCHAR}, #{facLicenseAddress,jdbcType=VARCHAR}, 
+      #{facCreateTime,jdbcType=TIMESTAMP}, #{facStartTime,jdbcType=TIMESTAMP}, #{facEndTime,jdbcType=TIMESTAMP}, 
+      #{facRegisteredAssets,jdbcType=DOUBLE}, #{facBusinessScope,jdbcType=VARCHAR}, #{facCertificateType,jdbcType=TINYINT}, 
+      #{facCertificatePictureUrl,jdbcType=VARCHAR}, #{facLegalName,jdbcType=VARCHAR}, 
+      #{facCertificateCode,jdbcType=VARCHAR}, #{facCertificateStartTime,jdbcType=TIMESTAMP}, 
+      #{facCertificateEndTime,jdbcType=TIMESTAMP}, #{facCompanyProvince,jdbcType=VARCHAR}, 
+      #{facCompanyCity,jdbcType=VARCHAR}, #{facCompanyDistrict,jdbcType=VARCHAR}, #{facCompanyAddress,jdbcType=VARCHAR}, 
+      #{facCompanyPhone,jdbcType=VARCHAR}, #{facEmergencyName,jdbcType=VARCHAR}, #{facEmergencyPhone,jdbcType=CHAR}, 
+      #{facOrganizationCode,jdbcType=VARCHAR}, #{facOrganizationStartTime,jdbcType=TIMESTAMP}, 
+      #{facOrganizationEndTime,jdbcType=TIMESTAMP}, #{facBankName,jdbcType=VARCHAR}, 
+      #{facAccountUrl,jdbcType=VARCHAR}, #{facAccountNumber,jdbcType=VARCHAR}, #{facStrategy,jdbcType=TINYINT}, 
+      #{parentFacId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{facReserved1,jdbcType=VARCHAR}, 
+      #{facReserved2,jdbcType=VARCHAR}, #{facReserved3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atguigu.mbg.entities.Facilitator" >
+    insert into facilitator
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="facId != null" >
+        fac_id,
+      </if>
+      <if test="facContactsName != null" >
+        fac_contacts_name,
+      </if>
+      <if test="facContactsPhone != null" >
+        fac_contacts_phone,
+      </if>
+      <if test="facVerifyCode != null" >
+        fac_verify_code,
+      </if>
+      <if test="facJoint != null" >
+        fac_joint,
+      </if>
+      <if test="facJointPhone != null" >
+        fac_joint_phone,
+      </if>
+      <if test="facRecommendCode != null" >
+        fac_recommend_code,
+      </if>
+      <if test="facMyselfCode != null" >
+        fac_myself_code,
+      </if>
+      <if test="facType != null" >
+        fac_type,
+      </if>
+      <if test="facLicenseType != null" >
+        fac_license_type,
+      </if>
+      <if test="facLicensePictureUrl != null" >
+        fac_license_picture_url,
+      </if>
+      <if test="facCountryName != null" >
+        fac_country_name,
+      </if>
+      <if test="facLicenseCode != null" >
+        fac_license_code,
+      </if>
+      <if test="facLicenseProvince != null" >
+        fac_license_province,
+      </if>
+      <if test="facLicenseCity != null" >
+        fac_license_city,
+      </if>
+      <if test="facLicenseDistrict != null" >
+        fac_license_district,
+      </if>
+      <if test="facLicenseAddress != null" >
+        fac_license_address,
+      </if>
+      <if test="facCreateTime != null" >
+        fac_create_time,
+      </if>
+      <if test="facStartTime != null" >
+        fac_start_time,
+      </if>
+      <if test="facEndTime != null" >
+        fac_end_time,
+      </if>
+      <if test="facRegisteredAssets != null" >
+        fac_registered_assets,
+      </if>
+      <if test="facBusinessScope != null" >
+        fac_business_scope,
+      </if>
+      <if test="facCertificateType != null" >
+        fac_certificate_type,
+      </if>
+      <if test="facCertificatePictureUrl != null" >
+        fac_certificate_picture_url,
+      </if>
+      <if test="facLegalName != null" >
+        fac_legal_name,
+      </if>
+      <if test="facCertificateCode != null" >
+        fac_certificate_code,
+      </if>
+      <if test="facCertificateStartTime != null" >
+        fac_certificate_start_time,
+      </if>
+      <if test="facCertificateEndTime != null" >
+        fac_certificate_end_time,
+      </if>
+      <if test="facCompanyProvince != null" >
+        fac_company_province,
+      </if>
+      <if test="facCompanyCity != null" >
+        fac_company_city,
+      </if>
+      <if test="facCompanyDistrict != null" >
+        fac_company_district,
+      </if>
+      <if test="facCompanyAddress != null" >
+        fac_company_address,
+      </if>
+      <if test="facCompanyPhone != null" >
+        fac_company_phone,
+      </if>
+      <if test="facEmergencyName != null" >
+        fac_emergency_name,
+      </if>
+      <if test="facEmergencyPhone != null" >
+        fac_emergency_phone,
+      </if>
+      <if test="facOrganizationCode != null" >
+        fac_organization_code,
+      </if>
+      <if test="facOrganizationStartTime != null" >
+        fac_organization_start_time,
+      </if>
+      <if test="facOrganizationEndTime != null" >
+        fac_organization_end_time,
+      </if>
+      <if test="facBankName != null" >
+        fac_bank_name,
+      </if>
+      <if test="facAccountUrl != null" >
+        fac_account_url,
+      </if>
+      <if test="facAccountNumber != null" >
+        fac_account_number,
+      </if>
+      <if test="facStrategy != null" >
+        fac_strategy,
+      </if>
+      <if test="parentFacId != null" >
+        parent_fac_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="facReserved1 != null" >
+        fac_reserved1,
+      </if>
+      <if test="facReserved2 != null" >
+        fac_reserved2,
+      </if>
+      <if test="facReserved3 != null" >
+        fac_reserved3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="facId != null" >
+        #{facId,jdbcType=VARCHAR},
+      </if>
+      <if test="facContactsName != null" >
+        #{facContactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="facContactsPhone != null" >
+        #{facContactsPhone,jdbcType=CHAR},
+      </if>
+      <if test="facVerifyCode != null" >
+        #{facVerifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facJoint != null" >
+        #{facJoint,jdbcType=TINYINT},
+      </if>
+      <if test="facJointPhone != null" >
+        #{facJointPhone,jdbcType=CHAR},
+      </if>
+      <if test="facRecommendCode != null" >
+        #{facRecommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facMyselfCode != null" >
+        #{facMyselfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facType != null" >
+        #{facType,jdbcType=TINYINT},
+      </if>
+      <if test="facLicenseType != null" >
+        #{facLicenseType,jdbcType=TINYINT},
+      </if>
+      <if test="facLicensePictureUrl != null" >
+        #{facLicensePictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="facCountryName != null" >
+        #{facCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseCode != null" >
+        #{facLicenseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseProvince != null" >
+        #{facLicenseProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseCity != null" >
+        #{facLicenseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseDistrict != null" >
+        #{facLicenseDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseAddress != null" >
+        #{facLicenseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="facCreateTime != null" >
+        #{facCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facStartTime != null" >
+        #{facStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facEndTime != null" >
+        #{facEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facRegisteredAssets != null" >
+        #{facRegisteredAssets,jdbcType=DOUBLE},
+      </if>
+      <if test="facBusinessScope != null" >
+        #{facBusinessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="facCertificateType != null" >
+        #{facCertificateType,jdbcType=TINYINT},
+      </if>
+      <if test="facCertificatePictureUrl != null" >
+        #{facCertificatePictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="facLegalName != null" >
+        #{facLegalName,jdbcType=VARCHAR},
+      </if>
+      <if test="facCertificateCode != null" >
+        #{facCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facCertificateStartTime != null" >
+        #{facCertificateStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facCertificateEndTime != null" >
+        #{facCertificateEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facCompanyProvince != null" >
+        #{facCompanyProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyCity != null" >
+        #{facCompanyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyDistrict != null" >
+        #{facCompanyDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyAddress != null" >
+        #{facCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyPhone != null" >
+        #{facCompanyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="facEmergencyName != null" >
+        #{facEmergencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="facEmergencyPhone != null" >
+        #{facEmergencyPhone,jdbcType=CHAR},
+      </if>
+      <if test="facOrganizationCode != null" >
+        #{facOrganizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facOrganizationStartTime != null" >
+        #{facOrganizationStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facOrganizationEndTime != null" >
+        #{facOrganizationEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facBankName != null" >
+        #{facBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="facAccountUrl != null" >
+        #{facAccountUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="facAccountNumber != null" >
+        #{facAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="facStrategy != null" >
+        #{facStrategy,jdbcType=TINYINT},
+      </if>
+      <if test="parentFacId != null" >
+        #{parentFacId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facReserved1 != null" >
+        #{facReserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="facReserved2 != null" >
+        #{facReserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="facReserved3 != null" >
+        #{facReserved3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atguigu.mbg.entities.FacilitatorExample" resultType="java.lang.Integer" >
+    select count(*) from facilitator
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update facilitator
+    <set >
+      <if test="record.facId != null" >
+        fac_id = #{record.facId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facContactsName != null" >
+        fac_contacts_name = #{record.facContactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facContactsPhone != null" >
+        fac_contacts_phone = #{record.facContactsPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.facVerifyCode != null" >
+        fac_verify_code = #{record.facVerifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facJoint != null" >
+        fac_joint = #{record.facJoint,jdbcType=TINYINT},
+      </if>
+      <if test="record.facJointPhone != null" >
+        fac_joint_phone = #{record.facJointPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.facRecommendCode != null" >
+        fac_recommend_code = #{record.facRecommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facMyselfCode != null" >
+        fac_myself_code = #{record.facMyselfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facType != null" >
+        fac_type = #{record.facType,jdbcType=TINYINT},
+      </if>
+      <if test="record.facLicenseType != null" >
+        fac_license_type = #{record.facLicenseType,jdbcType=TINYINT},
+      </if>
+      <if test="record.facLicensePictureUrl != null" >
+        fac_license_picture_url = #{record.facLicensePictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCountryName != null" >
+        fac_country_name = #{record.facCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facLicenseCode != null" >
+        fac_license_code = #{record.facLicenseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facLicenseProvince != null" >
+        fac_license_province = #{record.facLicenseProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facLicenseCity != null" >
+        fac_license_city = #{record.facLicenseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facLicenseDistrict != null" >
+        fac_license_district = #{record.facLicenseDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facLicenseAddress != null" >
+        fac_license_address = #{record.facLicenseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCreateTime != null" >
+        fac_create_time = #{record.facCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facStartTime != null" >
+        fac_start_time = #{record.facStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facEndTime != null" >
+        fac_end_time = #{record.facEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facRegisteredAssets != null" >
+        fac_registered_assets = #{record.facRegisteredAssets,jdbcType=DOUBLE},
+      </if>
+      <if test="record.facBusinessScope != null" >
+        fac_business_scope = #{record.facBusinessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCertificateType != null" >
+        fac_certificate_type = #{record.facCertificateType,jdbcType=TINYINT},
+      </if>
+      <if test="record.facCertificatePictureUrl != null" >
+        fac_certificate_picture_url = #{record.facCertificatePictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facLegalName != null" >
+        fac_legal_name = #{record.facLegalName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCertificateCode != null" >
+        fac_certificate_code = #{record.facCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCertificateStartTime != null" >
+        fac_certificate_start_time = #{record.facCertificateStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facCertificateEndTime != null" >
+        fac_certificate_end_time = #{record.facCertificateEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facCompanyProvince != null" >
+        fac_company_province = #{record.facCompanyProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCompanyCity != null" >
+        fac_company_city = #{record.facCompanyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCompanyDistrict != null" >
+        fac_company_district = #{record.facCompanyDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCompanyAddress != null" >
+        fac_company_address = #{record.facCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facCompanyPhone != null" >
+        fac_company_phone = #{record.facCompanyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facEmergencyName != null" >
+        fac_emergency_name = #{record.facEmergencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facEmergencyPhone != null" >
+        fac_emergency_phone = #{record.facEmergencyPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.facOrganizationCode != null" >
+        fac_organization_code = #{record.facOrganizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facOrganizationStartTime != null" >
+        fac_organization_start_time = #{record.facOrganizationStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facOrganizationEndTime != null" >
+        fac_organization_end_time = #{record.facOrganizationEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facBankName != null" >
+        fac_bank_name = #{record.facBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facAccountUrl != null" >
+        fac_account_url = #{record.facAccountUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facAccountNumber != null" >
+        fac_account_number = #{record.facAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facStrategy != null" >
+        fac_strategy = #{record.facStrategy,jdbcType=TINYINT},
+      </if>
+      <if test="record.parentFacId != null" >
+        parent_fac_id = #{record.parentFacId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.facReserved1 != null" >
+        fac_reserved1 = #{record.facReserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facReserved2 != null" >
+        fac_reserved2 = #{record.facReserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facReserved3 != null" >
+        fac_reserved3 = #{record.facReserved3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update facilitator
+    set fac_id = #{record.facId,jdbcType=VARCHAR},
+      fac_contacts_name = #{record.facContactsName,jdbcType=VARCHAR},
+      fac_contacts_phone = #{record.facContactsPhone,jdbcType=CHAR},
+      fac_verify_code = #{record.facVerifyCode,jdbcType=VARCHAR},
+      fac_joint = #{record.facJoint,jdbcType=TINYINT},
+      fac_joint_phone = #{record.facJointPhone,jdbcType=CHAR},
+      fac_recommend_code = #{record.facRecommendCode,jdbcType=VARCHAR},
+      fac_myself_code = #{record.facMyselfCode,jdbcType=VARCHAR},
+      fac_type = #{record.facType,jdbcType=TINYINT},
+      fac_license_type = #{record.facLicenseType,jdbcType=TINYINT},
+      fac_license_picture_url = #{record.facLicensePictureUrl,jdbcType=VARCHAR},
+      fac_country_name = #{record.facCountryName,jdbcType=VARCHAR},
+      fac_license_code = #{record.facLicenseCode,jdbcType=VARCHAR},
+      fac_license_province = #{record.facLicenseProvince,jdbcType=VARCHAR},
+      fac_license_city = #{record.facLicenseCity,jdbcType=VARCHAR},
+      fac_license_district = #{record.facLicenseDistrict,jdbcType=VARCHAR},
+      fac_license_address = #{record.facLicenseAddress,jdbcType=VARCHAR},
+      fac_create_time = #{record.facCreateTime,jdbcType=TIMESTAMP},
+      fac_start_time = #{record.facStartTime,jdbcType=TIMESTAMP},
+      fac_end_time = #{record.facEndTime,jdbcType=TIMESTAMP},
+      fac_registered_assets = #{record.facRegisteredAssets,jdbcType=DOUBLE},
+      fac_business_scope = #{record.facBusinessScope,jdbcType=VARCHAR},
+      fac_certificate_type = #{record.facCertificateType,jdbcType=TINYINT},
+      fac_certificate_picture_url = #{record.facCertificatePictureUrl,jdbcType=VARCHAR},
+      fac_legal_name = #{record.facLegalName,jdbcType=VARCHAR},
+      fac_certificate_code = #{record.facCertificateCode,jdbcType=VARCHAR},
+      fac_certificate_start_time = #{record.facCertificateStartTime,jdbcType=TIMESTAMP},
+      fac_certificate_end_time = #{record.facCertificateEndTime,jdbcType=TIMESTAMP},
+      fac_company_province = #{record.facCompanyProvince,jdbcType=VARCHAR},
+      fac_company_city = #{record.facCompanyCity,jdbcType=VARCHAR},
+      fac_company_district = #{record.facCompanyDistrict,jdbcType=VARCHAR},
+      fac_company_address = #{record.facCompanyAddress,jdbcType=VARCHAR},
+      fac_company_phone = #{record.facCompanyPhone,jdbcType=VARCHAR},
+      fac_emergency_name = #{record.facEmergencyName,jdbcType=VARCHAR},
+      fac_emergency_phone = #{record.facEmergencyPhone,jdbcType=CHAR},
+      fac_organization_code = #{record.facOrganizationCode,jdbcType=VARCHAR},
+      fac_organization_start_time = #{record.facOrganizationStartTime,jdbcType=TIMESTAMP},
+      fac_organization_end_time = #{record.facOrganizationEndTime,jdbcType=TIMESTAMP},
+      fac_bank_name = #{record.facBankName,jdbcType=VARCHAR},
+      fac_account_url = #{record.facAccountUrl,jdbcType=VARCHAR},
+      fac_account_number = #{record.facAccountNumber,jdbcType=VARCHAR},
+      fac_strategy = #{record.facStrategy,jdbcType=TINYINT},
+      parent_fac_id = #{record.parentFacId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      fac_reserved1 = #{record.facReserved1,jdbcType=VARCHAR},
+      fac_reserved2 = #{record.facReserved2,jdbcType=VARCHAR},
+      fac_reserved3 = #{record.facReserved3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atguigu.mbg.entities.Facilitator" >
+    update facilitator
+    <set >
+      <if test="facContactsName != null" >
+        fac_contacts_name = #{facContactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="facContactsPhone != null" >
+        fac_contacts_phone = #{facContactsPhone,jdbcType=CHAR},
+      </if>
+      <if test="facVerifyCode != null" >
+        fac_verify_code = #{facVerifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facJoint != null" >
+        fac_joint = #{facJoint,jdbcType=TINYINT},
+      </if>
+      <if test="facJointPhone != null" >
+        fac_joint_phone = #{facJointPhone,jdbcType=CHAR},
+      </if>
+      <if test="facRecommendCode != null" >
+        fac_recommend_code = #{facRecommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facMyselfCode != null" >
+        fac_myself_code = #{facMyselfCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facType != null" >
+        fac_type = #{facType,jdbcType=TINYINT},
+      </if>
+      <if test="facLicenseType != null" >
+        fac_license_type = #{facLicenseType,jdbcType=TINYINT},
+      </if>
+      <if test="facLicensePictureUrl != null" >
+        fac_license_picture_url = #{facLicensePictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="facCountryName != null" >
+        fac_country_name = #{facCountryName,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseCode != null" >
+        fac_license_code = #{facLicenseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseProvince != null" >
+        fac_license_province = #{facLicenseProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseCity != null" >
+        fac_license_city = #{facLicenseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseDistrict != null" >
+        fac_license_district = #{facLicenseDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="facLicenseAddress != null" >
+        fac_license_address = #{facLicenseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="facCreateTime != null" >
+        fac_create_time = #{facCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facStartTime != null" >
+        fac_start_time = #{facStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facEndTime != null" >
+        fac_end_time = #{facEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facRegisteredAssets != null" >
+        fac_registered_assets = #{facRegisteredAssets,jdbcType=DOUBLE},
+      </if>
+      <if test="facBusinessScope != null" >
+        fac_business_scope = #{facBusinessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="facCertificateType != null" >
+        fac_certificate_type = #{facCertificateType,jdbcType=TINYINT},
+      </if>
+      <if test="facCertificatePictureUrl != null" >
+        fac_certificate_picture_url = #{facCertificatePictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="facLegalName != null" >
+        fac_legal_name = #{facLegalName,jdbcType=VARCHAR},
+      </if>
+      <if test="facCertificateCode != null" >
+        fac_certificate_code = #{facCertificateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facCertificateStartTime != null" >
+        fac_certificate_start_time = #{facCertificateStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facCertificateEndTime != null" >
+        fac_certificate_end_time = #{facCertificateEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facCompanyProvince != null" >
+        fac_company_province = #{facCompanyProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyCity != null" >
+        fac_company_city = #{facCompanyCity,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyDistrict != null" >
+        fac_company_district = #{facCompanyDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyAddress != null" >
+        fac_company_address = #{facCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="facCompanyPhone != null" >
+        fac_company_phone = #{facCompanyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="facEmergencyName != null" >
+        fac_emergency_name = #{facEmergencyName,jdbcType=VARCHAR},
+      </if>
+      <if test="facEmergencyPhone != null" >
+        fac_emergency_phone = #{facEmergencyPhone,jdbcType=CHAR},
+      </if>
+      <if test="facOrganizationCode != null" >
+        fac_organization_code = #{facOrganizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="facOrganizationStartTime != null" >
+        fac_organization_start_time = #{facOrganizationStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facOrganizationEndTime != null" >
+        fac_organization_end_time = #{facOrganizationEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facBankName != null" >
+        fac_bank_name = #{facBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="facAccountUrl != null" >
+        fac_account_url = #{facAccountUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="facAccountNumber != null" >
+        fac_account_number = #{facAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="facStrategy != null" >
+        fac_strategy = #{facStrategy,jdbcType=TINYINT},
+      </if>
+      <if test="parentFacId != null" >
+        parent_fac_id = #{parentFacId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="facReserved1 != null" >
+        fac_reserved1 = #{facReserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="facReserved2 != null" >
+        fac_reserved2 = #{facReserved2,jdbcType=VARCHAR},
+      </if>
+      <if test="facReserved3 != null" >
+        fac_reserved3 = #{facReserved3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fac_id = #{facId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atguigu.mbg.entities.Facilitator" >
+    update facilitator
+    set fac_contacts_name = #{facContactsName,jdbcType=VARCHAR},
+      fac_contacts_phone = #{facContactsPhone,jdbcType=CHAR},
+      fac_verify_code = #{facVerifyCode,jdbcType=VARCHAR},
+      fac_joint = #{facJoint,jdbcType=TINYINT},
+      fac_joint_phone = #{facJointPhone,jdbcType=CHAR},
+      fac_recommend_code = #{facRecommendCode,jdbcType=VARCHAR},
+      fac_myself_code = #{facMyselfCode,jdbcType=VARCHAR},
+      fac_type = #{facType,jdbcType=TINYINT},
+      fac_license_type = #{facLicenseType,jdbcType=TINYINT},
+      fac_license_picture_url = #{facLicensePictureUrl,jdbcType=VARCHAR},
+      fac_country_name = #{facCountryName,jdbcType=VARCHAR},
+      fac_license_code = #{facLicenseCode,jdbcType=VARCHAR},
+      fac_license_province = #{facLicenseProvince,jdbcType=VARCHAR},
+      fac_license_city = #{facLicenseCity,jdbcType=VARCHAR},
+      fac_license_district = #{facLicenseDistrict,jdbcType=VARCHAR},
+      fac_license_address = #{facLicenseAddress,jdbcType=VARCHAR},
+      fac_create_time = #{facCreateTime,jdbcType=TIMESTAMP},
+      fac_start_time = #{facStartTime,jdbcType=TIMESTAMP},
+      fac_end_time = #{facEndTime,jdbcType=TIMESTAMP},
+      fac_registered_assets = #{facRegisteredAssets,jdbcType=DOUBLE},
+      fac_business_scope = #{facBusinessScope,jdbcType=VARCHAR},
+      fac_certificate_type = #{facCertificateType,jdbcType=TINYINT},
+      fac_certificate_picture_url = #{facCertificatePictureUrl,jdbcType=VARCHAR},
+      fac_legal_name = #{facLegalName,jdbcType=VARCHAR},
+      fac_certificate_code = #{facCertificateCode,jdbcType=VARCHAR},
+      fac_certificate_start_time = #{facCertificateStartTime,jdbcType=TIMESTAMP},
+      fac_certificate_end_time = #{facCertificateEndTime,jdbcType=TIMESTAMP},
+      fac_company_province = #{facCompanyProvince,jdbcType=VARCHAR},
+      fac_company_city = #{facCompanyCity,jdbcType=VARCHAR},
+      fac_company_district = #{facCompanyDistrict,jdbcType=VARCHAR},
+      fac_company_address = #{facCompanyAddress,jdbcType=VARCHAR},
+      fac_company_phone = #{facCompanyPhone,jdbcType=VARCHAR},
+      fac_emergency_name = #{facEmergencyName,jdbcType=VARCHAR},
+      fac_emergency_phone = #{facEmergencyPhone,jdbcType=CHAR},
+      fac_organization_code = #{facOrganizationCode,jdbcType=VARCHAR},
+      fac_organization_start_time = #{facOrganizationStartTime,jdbcType=TIMESTAMP},
+      fac_organization_end_time = #{facOrganizationEndTime,jdbcType=TIMESTAMP},
+      fac_bank_name = #{facBankName,jdbcType=VARCHAR},
+      fac_account_url = #{facAccountUrl,jdbcType=VARCHAR},
+      fac_account_number = #{facAccountNumber,jdbcType=VARCHAR},
+      fac_strategy = #{facStrategy,jdbcType=TINYINT},
+      parent_fac_id = #{parentFacId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      fac_reserved1 = #{facReserved1,jdbcType=VARCHAR},
+      fac_reserved2 = #{facReserved2,jdbcType=VARCHAR},
+      fac_reserved3 = #{facReserved3,jdbcType=VARCHAR}
+    where fac_id = #{facId,jdbcType=VARCHAR}
+  </update>
+</mapper>
